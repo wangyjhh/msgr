@@ -1,10 +1,6 @@
 import { defineBuildConfig } from "unbuild"
 
 export default defineBuildConfig({
-	entries: ["src/index"],
-	declaration: true,
+	entries: ["bin/msgr/index"],
 	clean: true,
-	rollup: {
-		emitCJS: true,
-	},
 })

@@ -16,11 +16,14 @@
 	"files": [
 		"dist"
 	],
+	"bin": {
+		"msgr": "dist/msgr/index.mjs"
+	},
 	"scripts": {
 		"dev": "pnpm build && npm link",
 		"unl": "npm unlink wangyj --global",
 		"test": "tsx test/test.ts",
-		"build": "tsc  && tsc-alias && tsx script/copy-files.ts"
+		"build": "unbuild"
 	},
 	"keywords": [],
 	"author": "wangyjhh",
