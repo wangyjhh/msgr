@@ -1,0 +1,45 @@
+{
+	"name": "typescript_template",
+	"version": "1.0.0",
+	"description": "This is a TypeScript project template.",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"dev": "pnpm build && npm link",
+		"unl": "npm unlink wangyj --global",
+		"test": "tsx test/test.ts",
+		"build": "tsc  && tsc-alias && tsx script/copy-files.ts"
+	},
+	"keywords": [],
+	"author": "wangyjhh",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^20.12.7",
+		"tsx": "^3.14.0",
+		"typescript": "^5.4.5",
+		"unbuild": "^2.0.0"
+	},
+	"dependencies": {
+		"@alicloud/ecs20140526": "^4.3.0",
+		"@alicloud/openapi-client": "^0.4.11",
+		"@alicloud/tea-util": "^1.4.9",
+		"chalk": "^5.3.0",
+		"commander": "^12.1.0",
+		"fs-extra": "^11.2.0",
+		"inquirer": "^11.0.2",
+		"ora": "^8.1.0",
+		"public-ip": "^7.0.1"
+	}
+}
