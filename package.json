@@ -1,27 +1,18 @@
 {
-	"name": "typescript_template",
+	"name": "aliyun_msgr_next",
 	"version": "1.0.0",
-	"description": "This is a TypeScript project template.",
+	"description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
 	"type": "module",
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs"
-		}
-	},
-	"main": "./dist/index.cjs",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
 	"bin": {
-		"msgr": "dist/msgr/index.mjs"
+		"msgr": "dist/bin/msgr/index.mjs"
 	},
 	"scripts": {
-		"dev": "pnpm build && npm link",
-		"unl": "npm unlink wangyj --global",
+		"dev": "pnpm build && pnpm unl && pnpm l",
+		"l": "npm link",
+		"unl": "npm unlink aliyun_msgr_next --global",
 		"test": "tsx test/test.ts",
 		"build": "unbuild"
 	},

@@ -10,6 +10,6 @@ program.name("wss").description("npm镜像源操作命令")
 // 查看当前镜像源命令
 // program.command("now").description("查看当前镜像源").action(wssNow)
 
-program.version(logv(pkg.version), "-V, --version", "输出版本号")
+program.version(logv(pkg.version), "-v, --version", "输出版本号")
 
 program.parse(process.argv)
