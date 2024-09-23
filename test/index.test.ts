@@ -1,7 +1,9 @@
-import { describe, expect, it } from "vitest"
+import { logf, logv, getEndpoint } from "../utils"
 
-describe("should", () => {
-	it("exported", () => {
-		expect(1).toEqual(1)
-	})
-})
+logf("提示信息", "success", "success")
+logf("提示信息", "warning", "warning")
+logf("提示信息", "error", "error")
+
+console.log(logv("1.0.1"))
+
+console.log(getEndpoint("cn-beijing"))
