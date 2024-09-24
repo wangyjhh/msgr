@@ -1,6 +1,6 @@
-import { Client, getEndpoint, logf } from "../../../utils"
-// @ts-ignore
+import { Client, getEndpoint, logf, regionIdMap } from "../../../utils"
 import columnify from "columnify"
+import inquirer from "inquirer"
 
 type SecurityGroupAttributesType = {
 	createTime: string
@@ -30,12 +30,40 @@ type SecurityGroupAttributesType = {
 }
 
 export const msgr_query_rules = async () => {
-	const res = await Client.getSecurityGroup(getEndpoint("cn-shanghai"), {
-		regionId: "cn-shanghai",
-		securityGroupId: "sg-uf6avwfjruaz4ujwp2lm",
+	const { select: regionId } = await inquirer.prompt([
+		{
+			type: "list",
+			loop: false,
+			name: "select",
+			message: "请选择区域",
+			choices: regionIdMap,
+		},
+	])
+
+	const groupIds = await Client.getSecurityGroupId(getEndpoint(regionId), {
+		regionId: regionId,
+	})
+
+	if (groupIds.length === 0) {
+		logf("该区域没有安全组", "warning", "WARNING")
+		return
+	}
+
+	const { select: securityGroupId } = await inquirer.prompt([
+		{
+			type: "list",
+			loop: false,
+			name: "select",
+			message: "请选择安全组ID",
+			choices: groupIds,
+		},
+	])
+	const res = await Client.getSecurityGroup(getEndpoint(regionId), {
+		regionId: regionId,
+		securityGroupId: securityGroupId,
 	})
 	if (res.statusCode === 404) {
-		logf(`${res.Message}`, "error", "Error")
+		logf(`${res.Message}`, "error", "ERROR")
 	} else {
 		const securityGroups = res.map((item: SecurityGroupAttributesType) => {
 			return {
@@ -45,7 +73,6 @@ export const msgr_query_rules = async () => {
 				portRange: item.portRange,
 				sourceCidrIp: item.sourceCidrIp,
 				description: item.description,
-				securityGroupRuleId: item.securityGroupRuleId,
 			}
 		})
 		logf(`${columnify(securityGroups)}`, "success")
