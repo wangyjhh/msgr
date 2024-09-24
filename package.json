@@ -1,25 +1,25 @@
 {
 	"name": "aliyun_msgr_next",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
-	"type": "module",
 	"files": [
 		"dist"
 	],
 	"bin": {
-		"msgr": "dist/bin/msgr/index.mjs"
+		"msgr": "dist/bin/msgr/index.cjs"
 	},
 	"scripts": {
 		"dev": "pnpm build && pnpm unl && pnpm l",
 		"l": "npm link",
 		"unl": "npm unlink aliyun_msgr_next --global",
-		"test": "tsx test/test.ts",
+		"test": "tsx test/index.test.ts",
 		"build": "unbuild"
 	},
 	"keywords": [],
 	"author": "wangyjhh",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^20.12.7",
 		"tsx": "^3.14.0",
 		"typescript": "^5.4.5",
@@ -29,7 +29,7 @@
 		"@alicloud/ecs20140526": "^4.3.0",
 		"@alicloud/openapi-client": "^0.4.11",
 		"@alicloud/tea-util": "^1.4.9",
-		"chalk": "^5.3.0",
+		"chalk": "^4.1.2",
 		"commander": "^12.1.0",
 		"fs-extra": "^11.2.0",
 		"inquirer": "^11.0.2",
