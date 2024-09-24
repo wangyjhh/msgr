@@ -46,7 +46,7 @@ export const msgr_query_rules = async () => {
 
 	if (groupIds.length === 0) {
 		logf("该区域没有安全组", "warning", "WARNING")
-		return
+		process.exit(0)
 	}
 
 	const { select: securityGroupId } = await inquirer.prompt([
@@ -62,19 +62,16 @@ export const msgr_query_rules = async () => {
 		regionId: regionId,
 		securityGroupId: securityGroupId,
 	})
-	if (res.statusCode === 404) {
-		logf(`${res.Message}`, "error", "ERROR")
-	} else {
-		const securityGroups = res.map((item: SecurityGroupAttributesType) => {
-			return {
-				policy: item.policy,
-				priority: item.priority,
-				ipProtocol: item.ipProtocol,
-				portRange: item.portRange,
-				sourceCidrIp: item.sourceCidrIp,
-				description: item.description,
-			}
-		})
-		logf(`${columnify(securityGroups)}`, "success")
-	}
+
+	const securityGroups = res.map((item: SecurityGroupAttributesType) => {
+		return {
+			policy: item.policy,
+			priority: item.priority,
+			ipProtocol: item.ipProtocol,
+			portRange: item.portRange,
+			sourceCidrIp: item.sourceCidrIp,
+			description: item.description,
+		}
+	})
+	logf(`${columnify(securityGroups)}`, "success")
 }
