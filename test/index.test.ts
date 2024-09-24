@@ -12,11 +12,10 @@ logf("error", "error")
 
 console.log(getEndpoint("cn-beijing"))
 
-// Client.getSecurityGroup(getEndpoint("cn-beijing"), {
-// 	regionId: "cn-beijing",
-// 	securityGroupId: "sg-2ze7c4gtry9mfi2uwpab",
-// }).then((res) => {
-// 	console.log(res)
-// })
+Client.getSecurityGroupId(getEndpoint("cn-shanghai"), {
+	regionId: "cn-shanghai",
+}).then((res) => {
+	console.log(res)
+})
 
 console.log(homedir())
