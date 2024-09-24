@@ -39,6 +39,9 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
     devDependencies:
+      '@types/columnify':
+        specifier: ^1.5.4
+        version: 1.5.4
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -603,6 +606,9 @@ packages:
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
+
+  '@types/columnify@1.5.4':
+    resolution: {integrity: sha512-YPEVzmy3kJupUee1ueLuvGspy6U2JHcxt6rYvRsSCEgVC54+KdBFjQ6NG/0koZk69e1bfXwSusgChwdFhvEXMw==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -2211,6 +2217,8 @@ snapshots:
       defer-to-connect: 2.0.1
 
   '@trysound/sax@0.2.0': {}
+
+  '@types/columnify@1.5.4': {}
 
   '@types/estree@1.0.5': {}
 

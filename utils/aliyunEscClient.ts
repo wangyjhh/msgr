@@ -6,12 +6,15 @@ import { readFileSync, ensureFileSync } from "fs-extra"
 import { join } from "path"
 import { homedir } from "node:os"
 
-type DescribeSecurityGroupRequestArgs = {
-	regionId: "cn-beijing" | "cn-shanghai"
+type BaseRequestArgs = {
+	regionId: string
+}
+
+type DescribeSecurityGroupAttributeRequestArgs = BaseRequestArgs & {
 	securityGroupId: string
 }
 
-type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupRequestArgs & {
+type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
 	securityGroupRuleId: string
 	sourceCidrIp: string
 }
@@ -52,10 +55,33 @@ export class Client {
 
 	/**
 	 * @remarks
-	 * 获取安全组信息
+	 * 获取区域安全组ID
 	 * @returns any
 	 */
-	static async getSecurityGroup(endpoint: string, args: DescribeSecurityGroupRequestArgs): Promise<any> {
+	static async getSecurityGroupId(endpoint: string, args: BaseRequestArgs): Promise<any> {
+		let client = Client.createClient(endpoint)
+		let describeSecurityGroupAttributeRequest = new $ECS.DescribeSecurityGroupsRequest(args)
+		let runtime = new $Util.RuntimeOptions({})
+		try {
+			// 复制代码运行请自行打印 API 的返回值
+			const group = (await client.describeSecurityGroupsWithOptions(describeSecurityGroupAttributeRequest, runtime)).body?.securityGroups
+				?.securityGroup
+			return group?.map((item: any) => item.securityGroupId)
+		} catch (error: any) {
+			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
+			// 错误 message
+			return error.data
+			// 诊断地址
+			// console.log(error.data["Recommend"])
+		}
+	}
+
+	/**
+	 * @remarks
+	 * 获取安全组规则信息
+	 * @returns any
+	 */
+	static async getSecurityGroup(endpoint: string, args: DescribeSecurityGroupAttributeRequestArgs): Promise<any> {
 		let client = Client.createClient(endpoint)
 		let describeSecurityGroupAttributeRequest = new $ECS.DescribeSecurityGroupAttributeRequest(args)
 		let runtime = new $Util.RuntimeOptions({})
@@ -77,7 +103,7 @@ export class Client {
 	 * 获取安全组规则ID
 	 * @returns any
 	 */
-	static async getSecurityGroupRuleId(endpoint: string, args: DescribeSecurityGroupRequestArgs): Promise<any> {
+	static async getSecurityGroupRuleId(endpoint: string, args: DescribeSecurityGroupAttributeRequestArgs): Promise<any> {
 		let client = Client.createClient(endpoint)
 		let describeSecurityGroupAttributeRequest = new $ECS.DescribeSecurityGroupAttributeRequest(args)
 		let runtime = new $Util.RuntimeOptions({})
