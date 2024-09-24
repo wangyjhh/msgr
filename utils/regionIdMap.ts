@@ -9,7 +9,7 @@ export const regionIdMap = [
 	},
 	{
 		name: "华北3（张家口）",
-		value: "cn-beijing",
+		value: "cn-zhangjiakou",
 	},
 	{
 		name: "华北5（呼和浩特）",
