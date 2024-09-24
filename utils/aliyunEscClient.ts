@@ -2,12 +2,12 @@
 import ECS, * as $ECS from "@alicloud/ecs20140526"
 import * as $OpenApi from "@alicloud/openapi-client"
 import * as $Util from "@alicloud/tea-util"
-import { readFileSync, writeFileSync, ensureFileSync } from "fs-extra"
+import { readFileSync, ensureFileSync } from "fs-extra"
 import { join } from "path"
 import { homedir } from "node:os"
 
 type DescribeSecurityGroupRequestArgs = {
-	regionId: "cn-beijing" | "cn-sahnghai"
+	regionId: "cn-beijing" | "cn-shanghai"
 	securityGroupId: string
 }
 
@@ -66,7 +66,7 @@ export class Client {
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
-			console.log("错误消息：" + error.message)
+			return error.data
 			// 诊断地址
 			// console.log(error.data["Recommend"])
 		}
@@ -89,7 +89,7 @@ export class Client {
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
-			console.log("错误消息：" + error.message)
+			return error.data
 			// 诊断地址
 			// console.log(error.data["Recommend"])
 		}
@@ -110,7 +110,7 @@ export class Client {
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
-			console.log("错误消息：" + error.message)
+			return error.data
 			// 诊断地址
 			// console.log(error.data["Recommend"])
 		}
