@@ -1,9 +1,12 @@
 import { logf, logv, getEndpoint, Client } from "../utils"
 import { homedir } from "node:os"
 
-logf("提示信息", "success", "success")
-logf("提示信息", "warning", "warning")
-logf("提示信息", "error", "error")
+logf("success", "success", "提示信息")
+logf("success", "success")
+logf("warning", "warning", "提示信息")
+logf("warning", "warning")
+logf("error", "error", "提示信息")
+logf("error", "error")
 
 // console.log(logv("1.0.1"))
 
