@@ -1,16 +1,14 @@
 import chalk from "chalk"
 
+const colorMap = {
+	success: { color: chalk.green, bgcolor: chalk.bgGreen.white },
+	error: { color: chalk.red, bgcolor: chalk.bgRed.white },
+	warning: { color: chalk.yellow, bgcolor: chalk.bgYellow.white },
+}
+
 // log format
-export const logf = (title: string, out: string, type: "success" | "error" | "warning") => {
-	switch (type) {
-		case "success":
-			console.log(chalk.bgGreen.white(` ${title} `), chalk.green(` ${out} `))
-			break
-		case "error":
-			console.log(chalk.bgRed.white(` ${title} `), chalk.red(` ${out} `))
-			break
-		case "warning":
-			console.log(chalk.bgYellow.white(` ${title} `), chalk.yellow(` ${out} `))
-			break
-	}
+export const logf = (out: string, type: "success" | "error" | "warning", title?: string) => {
+	title !== undefined
+		? console.log(colorMap[type].bgcolor(` ${title} `), colorMap[type].color(` ${out} `))
+		: console.log(colorMap[type].color(`${out}`))
 }

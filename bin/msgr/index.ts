@@ -10,9 +10,9 @@ program.name("msgr").description("阿里云安全组规则管理工具")
 
 program
 	.command("config")
-	.addArgument(new commander.Argument("<config>", "get | set").choices(["get", "set"]))
-	.addArgument(new commander.Argument("<accesskey>", "设置accessKey").choices(["accessKeyId", "accessKeySecret"]))
-	.argument("[value]", "accessKey的值", "")
+	.addArgument(new commander.Argument("<tpye>", "Config type, get or set.").choices(["get", "set"]))
+	.addArgument(new commander.Argument("<accesskey>", "Set accessKey.").choices(["accessKeyId", "accessKeySecret"]))
+	.argument("[value]", "AccessKey value.", "")
 	.description("配置")
 	.action(msgr_config)
 

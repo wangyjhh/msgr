@@ -16,18 +16,18 @@ export const msgr_config = (type: string, key: string, value: string) => {
 	)
 	if (type === "set") {
 		if (value === "") {
-			logf("Error", "Value is empty", "error")
+			logf("Value is empty", "error", "Error")
 		} else {
 			config[key] = value
 			writeFileSync(configPath, JSON.stringify(config))
-			logf(`${key}`, `Set value to ${config[key]}`, "success")
+			logf(`Set value to ${config[key]}`, "success", `${key}`)
 		}
 	}
 	if (type === "get") {
 		if (config[key] === "") {
-			logf(`${key}`, `${config[key]}`, "warning")
+			logf(`${config[key]}`, "warning", `${key}`)
 		} else {
-			logf(`${key}`, `${config[key]}`, "success")
+			logf(`${config[key]}`, "success", `${key}`)
 		}
 	}
 }
