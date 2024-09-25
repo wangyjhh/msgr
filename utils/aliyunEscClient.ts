@@ -6,36 +6,6 @@ import { join } from "path"
 import { homedir } from "node:os"
 import { logf } from "."
 
-type BaseRequestArgs = {
-	regionId: string
-}
-
-type DescribeSecurityGroupAttributeRequestArgs = BaseRequestArgs & {
-	securityGroupId: string
-}
-
-type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
-	securityGroupRuleId: string
-	sourceCidrIp: string
-}
-
-type PermissionsType = {
-	policy?: string
-	priority?: string
-	sourceCidrIp?: string
-	ipProtocol?: string
-	portRange?: string
-	description?: string
-}
-
-type AddSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
-	permissions?: PermissionsType[]
-}
-
-type RemoveSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
-	securityGroupRuleId: string[]
-}
-
 const configPath = join(homedir(), ".msgr", "config")
 ensureFileSync(configPath)
 const AccessKeyConfig = JSON.parse(
@@ -44,7 +14,7 @@ const AccessKeyConfig = JSON.parse(
 		: `{
 				"accessKeyId": "",
 				"accessKeySecret": ""
-			}\n\r`
+			}`
 )
 
 export class Client {
@@ -155,7 +125,9 @@ export class Client {
 		let runtime = new $Util.RuntimeOptions({})
 		try {
 			// 复制代码运行请自行打印 API 的返回值
-			return await client.authorizeSecurityGroupWithOptions(request, runtime)
+			const response = await client.authorizeSecurityGroupWithOptions(request, runtime)
+			logf("Successfully added security group rule", "success")
+			return response
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message

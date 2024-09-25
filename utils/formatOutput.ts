@@ -9,6 +9,6 @@ const colorMap = {
 // log format
 export const logf = (out: string, type: "success" | "error" | "warning", title?: string) => {
 	title !== undefined
-		? console.log(colorMap[type].bgcolor(` ${title} `), colorMap[type].color(` ${out} `))
-		: console.log(colorMap[type].color(`${out}`))
+		? console.log("\n\r" + colorMap[type].bgcolor(` ${title} `), colorMap[type].color(` ${out} `))
+		: console.log("\n\r" + colorMap[type].color(`${out}`))
 }
