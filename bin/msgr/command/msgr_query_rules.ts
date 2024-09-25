@@ -2,40 +2,13 @@ import { Client, getEndpoint, logf, regionIdMap } from "../../../utils"
 import columnify from "columnify"
 import inquirer from "inquirer"
 
-type SecurityGroupAttributesType = {
-	createTime: string
-	description: string
-	destCidrIp: string
-	destGroupId: string
-	destGroupName: string
-	destGroupOwnerAccount: string
-	destPrefixListId: string
-	destPrefixListName: string
-	direction: string
-	ipProtocol: string
-	ipv6DestCidrIp: string
-	ipv6SourceCidrIp: string
-	nicType: string
-	policy: string
-	portRange: string
-	priority: string
-	securityGroupRuleId: string
-	sourceCidrIp: string
-	sourceGroupId: string
-	sourceGroupName: string
-	sourceGroupOwnerAccount: string
-	sourcePortRange: string
-	sourcePrefixListId: string
-	sourcePrefixListName: string
-}
-
 export const msgr_query_rules = async () => {
 	const { select: regionId } = await inquirer.prompt([
 		{
 			type: "list",
 			loop: false,
 			name: "select",
-			message: "请选择区域",
+			message: "Please select a region.",
 			choices: regionIdMap,
 		},
 	])
@@ -45,7 +18,7 @@ export const msgr_query_rules = async () => {
 	})
 
 	if (groupIds.length === 0) {
-		logf("该区域没有安全组", "warning", "WARNING")
+		logf("There is no security group in this area.", "warning", "WARNING")
 		process.exit(0)
 	}
 
@@ -54,7 +27,7 @@ export const msgr_query_rules = async () => {
 			type: "list",
 			loop: false,
 			name: "select",
-			message: "请选择安全组ID",
+			message: "Select a security group ID",
 			choices: groupIds,
 		},
 	])
