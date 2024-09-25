@@ -126,7 +126,7 @@ export class Client {
 		try {
 			// 复制代码运行请自行打印 API 的返回值
 			const response = await client.authorizeSecurityGroupWithOptions(request, runtime)
-			logf("Successfully added security group rule", "success")
+			logf("The security group rule was added successfully", "success")
 			return response
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
@@ -150,7 +150,7 @@ export class Client {
 		try {
 			// 复制代码运行请自行打印 API 的返回值
 			const response = await client.revokeSecurityGroupWithOptions(request, runtime)
-			logf("Successfully remove security group rule", "success")
+			logf("The security group rule was removed successfully", "success")
 			return response
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
@@ -173,7 +173,9 @@ export class Client {
 		let request = new $ECS.ModifySecurityGroupRuleRequest(args)
 		let runtime = new $Util.RuntimeOptions({})
 		try {
-			return await client.modifySecurityGroupRuleWithOptions(request, runtime)
+			const response = await client.modifySecurityGroupRuleWithOptions(request, runtime)
+			logf("The security group rule was modified successfully", "success")
+			return response
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
