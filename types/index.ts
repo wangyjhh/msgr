@@ -35,7 +35,8 @@ type DescribeSecurityGroupAttributeRequestArgs = BaseRequestArgs & {
 
 type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
 	securityGroupRuleId: string
-	sourceCidrIp: string
+	sourceCidrIp?: string
+	description?: string
 }
 
 type PermissionsType = Required<
