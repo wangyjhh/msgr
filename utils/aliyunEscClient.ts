@@ -19,6 +19,19 @@ type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestA
 	sourceCidrIp: string
 }
 
+type PermissionsType = {
+	policy?: string
+	priority?: string
+	sourceCidrIp?: string
+	ipProtocol?: string
+	portRange?: string
+	description?: string
+}
+
+type AddSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
+	permissions?: PermissionsType[]
+}
+
 const configPath = join(homedir(), ".msgr", "config")
 ensureFileSync(configPath)
 const AccessKeyConfig = JSON.parse(
@@ -65,12 +78,11 @@ export class Client {
 	 */
 	static async getSecurityGroupId(endpoint: string, args: BaseRequestArgs): Promise<any> {
 		let client = Client.createClient(endpoint)
-		let describeSecurityGroupAttributeRequest = new $ECS.DescribeSecurityGroupsRequest(args)
+		let request = new $ECS.DescribeSecurityGroupsRequest(args)
 		let runtime = new $Util.RuntimeOptions({})
 		try {
 			// 复制代码运行请自行打印 API 的返回值
-			const group = (await client.describeSecurityGroupsWithOptions(describeSecurityGroupAttributeRequest, runtime)).body?.securityGroups
-				?.securityGroup
+			const group = (await client.describeSecurityGroupsWithOptions(request, runtime)).body?.securityGroups?.securityGroup
 			return group?.map((item: any) => item.securityGroupId)
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
@@ -89,12 +101,11 @@ export class Client {
 	 */
 	static async getSecurityGroup(endpoint: string, args: DescribeSecurityGroupAttributeRequestArgs): Promise<any> {
 		let client = Client.createClient(endpoint)
-		let describeSecurityGroupAttributeRequest = new $ECS.DescribeSecurityGroupAttributeRequest(args)
+		let request = new $ECS.DescribeSecurityGroupAttributeRequest(args)
 		let runtime = new $Util.RuntimeOptions({})
 		try {
 			// 复制代码运行请自行打印 API 的返回值
-			return (await client.describeSecurityGroupAttributeWithOptions(describeSecurityGroupAttributeRequest, runtime)).body?.permissions
-				?.permission
+			return (await client.describeSecurityGroupAttributeWithOptions(request, runtime)).body?.permissions?.permission
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
@@ -112,13 +123,35 @@ export class Client {
 	 */
 	static async getSecurityGroupRuleId(endpoint: string, args: DescribeSecurityGroupAttributeRequestArgs): Promise<any> {
 		let client = Client.createClient(endpoint)
-		let describeSecurityGroupAttributeRequest = new $ECS.DescribeSecurityGroupAttributeRequest(args)
+		let request = new $ECS.DescribeSecurityGroupAttributeRequest(args)
 		let runtime = new $Util.RuntimeOptions({})
 		try {
 			// 复制代码运行请自行打印 API 的返回值
-			return (
-				await client.describeSecurityGroupAttributeWithOptions(describeSecurityGroupAttributeRequest, runtime)
-			).body?.permissions?.permission?.filter((securityGroup: any) => securityGroup.description === "家中公网IP")[0].securityGroupRuleId
+			return (await client.describeSecurityGroupAttributeWithOptions(request, runtime)).body?.permissions?.permission?.filter(
+				(securityGroup: any) => securityGroup.description === "家中公网IP"
+			)[0].securityGroupRuleId
+		} catch (error: any) {
+			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
+			// 错误 message
+			logf(`${error.data.Message}`, "error", "ERROR")
+			process.exit(1)
+			// 诊断地址
+			// console.log(error.data["Recommend"])
+		}
+	}
+
+	/**
+	 * @remarks
+	 * 添加入方向安全组规则
+	 * @returns any
+	 */
+	static async addSecurityGroupRule(endpoint: string, args: AddSecurityGroupRuleRequestArgs): Promise<any> {
+		let client = Client.createClient(endpoint)
+		let request = new $ECS.AuthorizeSecurityGroupRequest(args)
+		let runtime = new $Util.RuntimeOptions({})
+		try {
+			// 复制代码运行请自行打印 API 的返回值
+			return await client.authorizeSecurityGroupWithOptions(request, runtime)
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
@@ -137,10 +170,10 @@ export class Client {
 	 */
 	static async modifySecurityGroup(endpoint: string, args: ModifySecurityGroupRuleRequestArgs): Promise<any> {
 		let client = Client.createClient(endpoint)
-		let modifySecurityGroupRuleRequest = new $ECS.ModifySecurityGroupRuleRequest(args)
+		let request = new $ECS.ModifySecurityGroupRuleRequest(args)
 		let runtime = new $Util.RuntimeOptions({})
 		try {
-			return await client.modifySecurityGroupRuleWithOptions(modifySecurityGroupRuleRequest, runtime)
+			return await client.modifySecurityGroupRuleWithOptions(request, runtime)
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
