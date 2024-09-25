@@ -8,15 +8,29 @@ logf("warning", "warning")
 logf("error", "error", "提示信息")
 logf("error", "error")
 
-// console.log(logv("1.0.1"))
+console.log(logv("1.0.1"))
 
 console.log(getEndpoint("cn-beijing"))
 
-// Client.getSecurityGroupId(getEndpoint("cn-shanghai"), {
-// 	regionId: "cn-shanghai",
-// }).then((res) => {
-// 	console.log(res)
-// })
+Client.getSecurityGroup(getEndpoint("cn-beijing"), {
+	regionId: "cn-beijing",
+	securityGroupId: "sg-2ze7c4gtry9mfi2uwpab",
+}).then((res) => {
+	console.log(
+		res.map((item) => {
+			return {
+				description: item.description,
+				isecurityGroupRuleId: item.securityGroupRuleId,
+			}
+		})
+	)
+})
+
+Client.getSecurityGroupId(getEndpoint("cn-shanghai"), {
+	regionId: "cn-shanghai",
+}).then((res) => {
+	console.log(res)
+})
 
 Client.addSecurityGroupRule(getEndpoint("cn-beijing"), {
 	regionId: "cn-beijing",
@@ -31,6 +45,14 @@ Client.addSecurityGroupRule(getEndpoint("cn-beijing"), {
 			description: "This is description test.",
 		},
 	],
+}).then((res) => {
+	console.log(res)
+})
+
+Client.removeSecurityGroupRule(getEndpoint("cn-beijing"), {
+	regionId: "cn-beijing",
+	securityGroupId: "sg-2ze7c4gtry9mfi2uwpab",
+	securityGroupRuleId: ["sgr-2ze9jfigaakhffiqpako"],
 }).then((res) => {
 	console.log(res)
 })
