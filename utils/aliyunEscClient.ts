@@ -32,6 +32,10 @@ type AddSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs
 	permissions?: PermissionsType[]
 }
 
+type RemoveSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
+	securityGroupRuleId: string[]
+}
+
 const configPath = join(homedir(), ".msgr", "config")
 ensureFileSync(configPath)
 const AccessKeyConfig = JSON.parse(
@@ -152,6 +156,28 @@ export class Client {
 		try {
 			// 复制代码运行请自行打印 API 的返回值
 			return await client.authorizeSecurityGroupWithOptions(request, runtime)
+		} catch (error: any) {
+			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
+			// 错误 message
+			logf(`${error.data.Message}`, "error", "ERROR")
+			process.exit(1)
+			// 诊断地址
+			// console.log(error.data["Recommend"])
+		}
+	}
+
+	/**
+	 * @remarks
+	 * 删除入方向安全组规则
+	 * @returns any
+	 */
+	static async removeSecurityGroupRule(endpoint: string, args: RemoveSecurityGroupRuleRequestArgs): Promise<any> {
+		let client = Client.createClient(endpoint)
+		let request = new $ECS.RevokeSecurityGroupRequest(args)
+		let runtime = new $Util.RuntimeOptions({})
+		try {
+			// 复制代码运行请自行打印 API 的返回值
+			return await client.revokeSecurityGroupWithOptions(request, runtime)
 		} catch (error: any) {
 			// 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
 			// 错误 message
