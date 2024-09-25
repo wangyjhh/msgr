@@ -12,8 +12,25 @@ logf("error", "error")
 
 console.log(getEndpoint("cn-beijing"))
 
-Client.getSecurityGroupId(getEndpoint("cn-shanghai"), {
-	regionId: "cn-shanghai",
+// Client.getSecurityGroupId(getEndpoint("cn-shanghai"), {
+// 	regionId: "cn-shanghai",
+// }).then((res) => {
+// 	console.log(res)
+// })
+
+Client.addSecurityGroupRule(getEndpoint("cn-beijing"), {
+	regionId: "cn-beijing",
+	securityGroupId: "sg-2ze7c4gtry9mfi2uwpab",
+	permissions: [
+		{
+			policy: "accept",
+			priority: "1",
+			sourceCidrIp: "10.48.130.21",
+			ipProtocol: "TCP",
+			portRange: "1/65535",
+			description: "This is description test.",
+		},
+	],
 }).then((res) => {
 	console.log(res)
 })
