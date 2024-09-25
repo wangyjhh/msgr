@@ -1,4 +1,5 @@
 import { logf, logv, getEndpoint, Client } from "../utils"
+import columnify from "columnify"
 import { homedir } from "node:os"
 
 logf("success", "success", "提示信息")
@@ -58,3 +59,16 @@ Client.removeSecurityGroupRule(getEndpoint("cn-beijing"), {
 })
 
 console.log(homedir())
+
+console.log(
+	columnify([
+		{
+			policy: "policy",
+			priority: "priority",
+			ipProtocol: "ipProtocol",
+			portRange: "portRange",
+			sourceCidrIp: "sourceCidrIp",
+			description: "description",
+		},
+	]).split("\n")[1]
+)
