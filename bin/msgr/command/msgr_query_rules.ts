@@ -27,7 +27,7 @@ export const msgr_query_rules = async () => {
 			type: "list",
 			loop: false,
 			name: "select",
-			message: "Select a security group ID",
+			message: "Select a security group ID.",
 			choices: groupIds,
 		},
 	])

@@ -16,7 +16,7 @@ export const msgr_config = (type: string, key: string, value: string) => {
 	)
 	if (type === "set") {
 		if (value === "") {
-			logf("Value is empty", "error", "ERROR")
+			logf("Value is empty.", "error", "ERROR")
 		} else {
 			config[key] = value
 			writeFileSync(configPath, JSON.stringify(config))

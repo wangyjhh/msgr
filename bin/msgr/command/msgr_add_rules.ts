@@ -26,7 +26,7 @@ export const msgr_add_rules = async () => {
 			type: "list",
 			loop: false,
 			name: "securityGroupId",
-			message: "Select a security group ID",
+			message: "Select a security group ID.",
 			choices: groupIds,
 		},
 	])
