@@ -1,36 +1,11 @@
-import { Client, getEndpoint, logf, regionIdMap } from "../../../utils"
+import { Client, getEndpoint, logf } from "../../../utils"
 import columnify from "columnify"
-import inquirer from "inquirer"
+import { getRegionIdAndGroupId } from "../hooks"
+
+export const msgr_query_rules_base = async () => {}
 
 export const msgr_query_rules = async () => {
-	const { select: regionId } = await inquirer.prompt([
-		{
-			type: "list",
-			loop: false,
-			name: "select",
-			message: "Please select a region.",
-			choices: regionIdMap,
-		},
-	])
-
-	const groupIds = await Client.getSecurityGroupId(getEndpoint(regionId), {
-		regionId: regionId,
-	})
-
-	if (groupIds.length === 0) {
-		logf("There is no security group in this area.", "warning", "WARNING")
-		process.exit(0)
-	}
-
-	const { select: securityGroupId } = await inquirer.prompt([
-		{
-			type: "list",
-			loop: false,
-			name: "select",
-			message: "Select a security group ID.",
-			choices: groupIds,
-		},
-	])
+	const { regionId, securityGroupId } = await getRegionIdAndGroupId()
 	const res = await Client.getSecurityGroup(getEndpoint(regionId), {
 		regionId: regionId,
 		securityGroupId: securityGroupId,

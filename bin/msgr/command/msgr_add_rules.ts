@@ -1,35 +1,11 @@
-import { Client, getEndpoint, logf, regionIdMap } from "../../../utils"
+import { Client, getEndpoint } from "../../../utils"
 import inquirer from "inquirer"
+import { getRegionIdAndGroupId, getPublicIP } from "../hooks"
 
 export const msgr_add_rules = async () => {
-	const { regionId } = await inquirer.prompt([
-		{
-			type: "list",
-			loop: false,
-			name: "regionId",
-			message: "Please select a region.",
-			choices: regionIdMap,
-		},
-	])
+	const { regionId, securityGroupId } = await getRegionIdAndGroupId()
 
-	const groupIds = await Client.getSecurityGroupId(getEndpoint(regionId), {
-		regionId: regionId,
-	})
-
-	if (groupIds.length === 0) {
-		logf("There is no security group in this area.", "warning", "WARNING")
-		process.exit(0)
-	}
-
-	const { securityGroupId } = await inquirer.prompt([
-		{
-			type: "list",
-			loop: false,
-			name: "securityGroupId",
-			message: "Select a security group ID.",
-			choices: groupIds,
-		},
-	])
+	const publicIP = await getPublicIP()
 
 	const { policy, priority, ipProtocol, portRange, sourceCidrIp, description } = await inquirer.prompt([
 		{
@@ -62,7 +38,7 @@ export const msgr_add_rules = async () => {
 			type: "input",
 			name: "sourceCidrIp",
 			message: "Please enter sourceCidrIp. (CIDR format and IPv4 format IP address range are supported.)",
-			default: `${(await (await import("public-ip")).publicIpv4()) ?? "0.0.0.0/0"}`,
+			default: publicIP,
 		},
 		{
 			type: "input",
