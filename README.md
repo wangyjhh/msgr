@@ -29,19 +29,19 @@ Commands:
 ```
 ## Example
 
-* Enter the command and fill in the necessary information according to the command line instructions
+Enter the command and fill in the necessary information according to the command line instructions
 
-### Get config
+#### Get config
 ```bash
 msgr config get accessKeyId
 msgr config get accessKeySecret
 ```
-### Set config
+#### Set config
 ```bash
 msgr config set accessKeyId [accessKeyId]
 msgr config set accessKeySecret [accessKeySecret]
 ```
-### Get Security group rules list
+#### Get Security group rules list
 ```bash
 msgr list
 ```
@@ -49,7 +49,7 @@ msgr list
 # The following commands will also work
 msgr ls
 ```
-### Add Security group rules
+#### Add Security group rules
 ```bash
 msgr add
 ```
@@ -58,7 +58,7 @@ msgr add
 msgr ad
 msgr insert
 ```
-### Remove Security group rules
+#### Remove Security group rules
 ```bash
 msgr remove
 ```
@@ -67,7 +67,7 @@ msgr remove
 msgr rm
 msgr delete
 ```
-### Modify Security group rules
+#### Modify Security group rules
 ```bash
 msgr modify
 ```
