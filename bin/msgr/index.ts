@@ -11,8 +11,16 @@ program
 	.addHelpText(
 		"after",
 		`
-Example call:
-  $ custom-help --help`
+Example:
+  $ msgr config get accessKeyId 
+  $ msgr config get accessKeySecret
+  $ msgr config set accessKeyId xxx
+  $ msgr config set accessKeySecret xxx
+  $ msgr list or msgr ls
+  $ msgr add or msgr ad or msgr insert
+  $ msgr remove or msgr rm or msgr delete
+  $ msgr modify or msgr mo or msgr edit
+  `
 	)
 	.description("Alibaba Cloud security group rule management tool.")
 
