@@ -1,12 +1,17 @@
 {
-	"name": "aliyun_msgr_next",
-	"version": "0.0.1",
+	"name": "@wangyjhh/msgr",
+	"version": "0.1.0",
 	"description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
 	"files": [
 		"dist"
 	],
+	"main": "dist/bin/msgr/index.cjs",
 	"bin": {
 		"msgr": "dist/bin/msgr/index.cjs"
+	},
+	"repository": {
+		"url": "https://github.com/wangyjhh/",
+		"type": "git"
 	},
 	"scripts": {
 		"dev": "pnpm build && pnpm unl && pnpm l",
