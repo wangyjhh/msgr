@@ -16,7 +16,7 @@
 	"scripts": {
 		"dev": "pnpm build && pnpm unl && pnpm l",
 		"l": "npm link",
-		"unl": "npm unlink aliyun_msgr_next --global",
+		"unl": "npm unlink @wangyjhh/msgr --global",
 		"test": "tsx test/index.test.ts",
 		"build": "unbuild && tsx script/copy-files.ts",
 		"prepublish": "pnpm unl && pnpm build",
