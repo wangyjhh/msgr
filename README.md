@@ -1,5 +1,7 @@
 # @wangyjhh/msgr
 
+A security group rule management tool for Alibaba Cloud ESC implemented based on the official SDK.
+
 ## Install
 ```bash
 # npm
