@@ -10,8 +10,7 @@
 		"msgr": "dist/bin/msgr/index.cjs"
 	},
 	"repository": {
-		"url": "https://github.com/wangyjhh/msgr",
-		"type": "git"
+		"url": "git+https://github.com/wangyjhh/msgr.git"
 	},
 	"scripts": {
 		"dev": "pnpm build && pnpm unl && pnpm l",
