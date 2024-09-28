@@ -10,7 +10,7 @@
 		"msgr": "dist/bin/msgr/index.cjs"
 	},
 	"repository": {
-		"url": "https://github.com/wangyjhh/",
+		"url": "https://github.com/wangyjhh/msgr",
 		"type": "git"
 	},
 	"scripts": {
@@ -18,7 +18,7 @@
 		"l": "npm link",
 		"unl": "npm unlink aliyun_msgr_next --global",
 		"test": "tsx test/index.test.ts",
-		"build": "unbuild"
+		"build": "unbuild && tsx script/copy-files.ts"
 	},
 	"keywords": [],
 	"author": "wangyjhh",
