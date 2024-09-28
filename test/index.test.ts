@@ -1,6 +1,7 @@
 import { logf, logv, getEndpoint, Client } from "../utils"
 import columnify from "columnify"
 import { homedir } from "node:os"
+import { v4 as publicIpv4 } from "public-ip"
 
 logf("success", "success", "提示信息")
 logf("success", "success")
@@ -8,6 +9,10 @@ logf("warning", "warning", "提示信息")
 logf("warning", "warning")
 logf("error", "error", "提示信息")
 logf("error", "error")
+
+publicIpv4().then((ip) => {
+	console.log(ip)
+})
 
 console.log(logv("1.0.1"))
 
