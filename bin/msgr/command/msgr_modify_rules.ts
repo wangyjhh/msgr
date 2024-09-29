@@ -4,7 +4,7 @@ import { getRegionIdAndGroupIdAndGroupRuleId, getPublicIP } from "../hooks"
 
 const attributeMap = ["policy", "priority", "ipProtocol", "portRange", "sourceCidrIp", "description"]
 
-const notModifiableMap = ["policy", "priority", "ipProtocol", "portRange"]
+const notModifiableMap = ["policy", "ipProtocol", "portRange"]
 
 const getAttributeChoicesList = () => {
 	return attributeMap.map((attribute) => {
@@ -39,6 +39,12 @@ export const msgr_modify_rules = async () => {
 	const publicIP = await getPublicIP()
 
 	const input_prompt_map = {
+		priority: {
+			type: "input",
+			name: "value",
+			message: "Please enter priority.",
+			default: "1",
+		},
 		sourceCidrIp: {
 			type: "input",
 			name: "value",
