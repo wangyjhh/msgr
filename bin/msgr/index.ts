@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import commander, { Command } from "commander"
 import { logv } from "../../utils/index"
-import { msgr_query_rules, msgr_config, msgr_add_rules, msgr_remove_rules, msgr_modify_rules } from "./command"
+import { msgr_query_rules, msgr_config, msgr_add_rules, msgr_remove_rules, msgr_modify_rules, msgr_get_v4, msgr_get_v6 } from "./command"
 import pkg from "../../package.json"
 
 const program = new Command()
@@ -20,6 +20,8 @@ Example:
   $ msgr add or msgr ad or msgr insert
   $ msgr remove or msgr rm or msgr delete
   $ msgr modify or msgr mo or msgr edit
+  $ msgr v4
+  $ msgr v6
   `
 	)
 	.description("Alibaba Cloud security group rule management tool.")
@@ -47,6 +49,10 @@ program.command("add").aliases(["ad", "insert"]).description("Add the security g
 program.command("remove").aliases(["rm", "delete"]).description("Remove the security group rules.").action(msgr_remove_rules)
 // 修改安全组规则
 program.command("modify").aliases(["mo", "edit"]).description("Modify the security group rules.").action(msgr_modify_rules)
+// 查看公网ipv4地址
+program.command("v4").description("Querying an ipv4 public ip address.").action(msgr_get_v4)
+// 查看公网ipv6地址
+program.command("v6").description("Querying an ipv6 public ip address.").action(msgr_get_v6)
 
 program.version(logv(pkg.version), "-v, --version", "Output version number.")
 

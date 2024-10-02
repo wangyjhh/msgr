@@ -1,10 +1,28 @@
 import { Client, getEndpoint, logf, regionIdMap } from "../../../utils"
 import columnify from "columnify"
 import inquirer from "inquirer"
-import { v4 as publicIpv4 } from "public-ip"
+import { v4 as publicIpv4, v6 as publicIpv6 } from "public-ip"
 
 export const getPublicIP = async () => {
 	return `${(await publicIpv4()) ?? "0.0.0.0/0"}`
+}
+
+export const getPublicIPV4 = async () => {
+	try {
+		const ipv4 = await publicIpv4()
+		logf(`${ipv4}\n`, "success", "IPV4")
+	} catch (error) {
+		logf(`Not found\n`, "error", "IPV4")
+	}
+}
+
+export const getPublicIPV6 = async () => {
+	try {
+		const ipv6 = await publicIpv6()
+		logf(`${ipv6}\n`, "success", "IPV6")
+	} catch (error) {
+		logf(`Not found\n`, "error", "IPV6")
+	}
 }
 
 export const getRegionIdAndGroupId = async () => {
