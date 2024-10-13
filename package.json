@@ -1,47 +1,51 @@
 {
-	"name": "@wangyjhh/msgr",
-	"version": "0.2.0",
-	"description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
-	"files": [
-		"dist"
-	],
-	"main": "dist/bin/msgr/index.cjs",
-	"bin": {
-		"msgr": "dist/bin/msgr/index.cjs"
-	},
-	"repository": {
-		"url": "git+https://github.com/wangyjhh/msgr.git"
-	},
-	"scripts": {
-		"dev": "pnpm build && pnpm unl && pnpm l",
-		"l": "npm link",
-		"unl": "npm unlink @wangyjhh/msgr -g",
-		"test": "tsx test/index.test.ts",
-		"build": "unbuild && tsx script/copy-files.ts",
-		"prepublish": "pnpm unl && pnpm build",
-		"publish": "npm publish"
-	},
-	"keywords": [],
-	"author": "wangyjhh",
-	"license": "MIT",
-	"devDependencies": {
-		"@types/columnify": "^1.5.4",
-		"@types/fs-extra": "^11.0.4",
-		"@types/node": "^20.12.7",
-		"tsx": "^3.14.0",
-		"typescript": "^5.4.5",
-		"unbuild": "^2.0.0"
-	},
-	"dependencies": {
-		"@alicloud/ecs20140526": "^4.3.0",
-		"@alicloud/openapi-client": "^0.4.11",
-		"@alicloud/tea-util": "^1.4.9",
-		"chalk": "^4.1.2",
-		"columnify": "^1.6.0",
-		"commander": "^12.1.0",
-		"fs-extra": "^11.2.0",
-		"inquirer": "^11.0.2",
-		"ora": "^8.1.0",
-		"public-ip": "^4.0.4"
-	}
+    "name": "@wangyjhh/msgr",
+    "version": "0.2.0",
+    "description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
+    "author": "wangyjhh",
+    "license": "MIT",
+    "repository": {
+        "url": "git+https://github.com/wangyjhh/msgr.git"
+    },
+    "keywords": [],
+    "main": "dist/bin/msgr/index.cjs",
+    "bin": {
+        "msgr": "dist/bin/msgr/index.cjs"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "pnpm build && pnpm unl && pnpm l",
+        "l": "npm link",
+        "unl": "npm unlink @wangyjhh/msgr -g",
+        "test": "tsx test/index.test.ts",
+        "lint": "eslint .",
+        "fix": "eslint . --fix",
+        "build": "unbuild && tsx script/copy-files.ts",
+        "prepublish": "pnpm unl && pnpm build",
+        "publish": "npm publish"
+    },
+    "dependencies": {
+        "@alicloud/ecs20140526": "^4.3.0",
+        "@alicloud/openapi-client": "^0.4.11",
+        "@alicloud/tea-util": "^1.4.9",
+        "chalk": "^4.1.2",
+        "columnify": "^1.6.0",
+        "commander": "^12.1.0",
+        "fs-extra": "^11.2.0",
+        "inquirer": "^11.0.2",
+        "ora": "^8.1.0",
+        "public-ip": "^4.0.4"
+    },
+    "devDependencies": {
+        "@antfu/eslint-config": "^3.7.3",
+        "@types/columnify": "^1.5.4",
+        "@types/fs-extra": "^11.0.4",
+        "@types/node": "^20.12.7",
+        "eslint": "^9.12.0",
+        "tsx": "^3.14.0",
+        "typescript": "^5.4.5",
+        "unbuild": "^2.0.0"
+    }
 }
