@@ -3,7 +3,15 @@ import process from 'node:process'
 import commander, { Command } from 'commander'
 import pkg from '../../package.json'
 import { logv } from '../../utils/index'
-import { msgr_add_rules, msgr_config, msgr_get_v4, msgr_get_v6, msgr_modify_rules, msgr_query_rules, msgr_remove_rules } from './command'
+import {
+    msgr_add_rules,
+    msgr_config,
+    msgr_get_v4,
+    msgr_get_v6,
+    msgr_modify_rules,
+    msgr_query_rules,
+    msgr_remove_rules,
+} from './command'
 
 const program = new Command()
 
@@ -36,9 +44,7 @@ program
         'after',
         '\nExample:\n    $ msgr config get accessKeyId\n  $ msgr config get accessKeySecret\n  $ msgr config set accessKeyId <accessKeyId>\n  $ msgr config set accessKeySecret <accessKeySecret>\n',
     )
-    .addArgument(new commander.Argument('<tpye>', 'Config type, get or set.').choices(['get', 'set']))
-    .addArgument(new commander.Argument('<accesskey>', 'Set accessKey.').choices(['accessKeyId', 'accessKeySecret']))
-    .argument('[value]', 'AccessKey value.', '')
+    .addArgument(new commander.Argument('<tpye>', 'Config type. (set/get/remove/clear)').choices(['set', 'get', 'remove', 'clear']))
     .description('Configuration')
     .action(msgr_config)
 
