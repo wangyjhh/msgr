@@ -1,6 +1,6 @@
 // print version
 export const logv = (version: string) => {
-	return `
+    return `
       ___           ___           ___           ___     
      /\\__\\         /\\  \\         /\\  \\         /\\  \\    
     /::|  |       /::\\  \\       /::\\  \\       /::\\  \\   

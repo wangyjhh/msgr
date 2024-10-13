@@ -1,16 +1,16 @@
 {
-	"compilerOptions": {
-		"target": "ESNext",
-		"lib": ["ESNext"],
-		"module": "CommonJS",
-		"moduleResolution": "Node",
-		"strict": true,
-		"sourceMap": true,
-		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"strictNullChecks": true,
-		"skipDefaultLibCheck": true,
-		"skipLibCheck": true
-	},
-	"include": ["bin/**/*", "types/**/*"]
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["ESNext"],
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true
+    },
+    "include": ["bin/**/*", "types/**/*"]
 }

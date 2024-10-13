@@ -9,5 +9,6 @@ export default antfu(
             'antfu/top-level-function': 'off',
             // 'no-console': 'error',
         },
+        ignores: ['test/**/*'],
     },
 )
