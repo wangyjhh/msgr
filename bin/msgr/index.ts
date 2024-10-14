@@ -44,7 +44,7 @@ program
         'after',
         '\nExample:\n    $ msgr config get accessKeyId\n  $ msgr config get accessKeySecret\n  $ msgr config set accessKeyId <accessKeyId>\n  $ msgr config set accessKeySecret <accessKeySecret>\n',
     )
-    .addArgument(new commander.Argument('<tpye>', 'Config type. (set/get/remove/clear)').choices(['set', 'get', 'remove', 'clear']))
+    .addArgument(new commander.Argument('<tpye>', 'Config type. (set/get/default/remove/clear)').choices(['set', 'get', 'remove', 'clear', 'default']))
     .description('Configuration')
     .action(msgr_config)
 

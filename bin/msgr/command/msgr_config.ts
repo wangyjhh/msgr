@@ -1,3 +1,4 @@
+import { log } from 'node:console'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { ensureFileSync, readFileSync, writeFileSync } from 'fs-extra'
@@ -51,10 +52,37 @@ export const msgr_config = async (type: string) => {
         config[accessKeyName] = {
             accessKeyId,
             accessKeySecret,
+            default: Object.keys(config).length === 0,
         }
 
         writeFileSync(configPath, JSON.stringify(config))
         logf(`AThe AccessKey is successfully inserted.`, 'success')
+    }
+
+    if (type === 'default') {
+        if (Object.keys(config).length === 0) {
+            logf(`The AccessKey is not set`, 'warning')
+            return
+        }
+
+        const { accessKey } = await inquirer.prompt([
+            {
+                type: 'list',
+                loop: false,
+                name: 'accessKey',
+                message: 'Select a accessKey.',
+                choices: Object.keys(config),
+            },
+        ])
+
+        for (const key in config) {
+            config[key].default = false
+        }
+
+        config[accessKey].default = true
+
+        writeFileSync(configPath, JSON.stringify(config))
+        logf(`The AccessKey "${accessKey}" set default is successfully.`, 'success')
     }
 
     if (type === 'get') {
@@ -69,20 +97,41 @@ export const msgr_config = async (type: string) => {
                     loop: false,
                     name: 'accessKey',
                     message: 'Select a accessKey.',
-                    choices: Object.keys(config),
+                    choices: Object.keys(config).map((key) => {
+                        return {
+                            name: config[key].default ? `${key} (default)` : key,
+                            value: key,
+                        }
+                    }),
                 },
             ])
-            logf(JSON.stringify(config[accessKey]), 'success')
+            logf(`accessKeyId: ${config[accessKey].accessKeyId}\n\raccessKeySecret: ${config[accessKey].accessKeySecret}\n\r`, 'success')
         }
     }
 
     if (type === 'remove') {
-        // if (config[key] === '') {
-        //     logf(`${config[key]}`, 'warning', `${key.toUpperCase()}`)
-        // }
-        // else {
-        //     logf(`${config[key]}`, 'success', `${key.toUpperCase()}`)
-        // }
+        if (Object.keys(config).length === 0) {
+            logf(`The AccessKey is not set`, 'warning')
+            return
+        }
+
+        const { accessKey } = await inquirer.prompt([
+            {
+                type: 'list',
+                loop: false,
+                name: 'accessKey',
+                message: 'Select a accessKey.',
+                choices: Object.keys(config),
+            },
+        ])
+        delete config[accessKey]
+
+        if (Object.keys(config).length !== 0) {
+            config[Object.keys(config)[0]].default = true
+        }
+
+        writeFileSync(configPath, JSON.stringify(config))
+        logf(`The AccessKey "${accessKey}" is successfully removed.`, 'success')
     }
 
     if (type === 'clear') {
