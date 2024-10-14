@@ -78,6 +78,7 @@ console.log(
     ]).split('\n')[1],
 )
 
-console.log(getConfig());
+console.log(getConfig('all'));
+console.log(getConfig('default'));
 
 configIsEmpty({})
