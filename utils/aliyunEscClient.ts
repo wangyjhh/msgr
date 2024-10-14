@@ -1,19 +1,8 @@
-import { homedir } from 'node:os'
-import { join } from 'node:path'
 import process from 'node:process'
 import ECS, * as $ECS from '@alicloud/ecs20140526'
 import * as $OpenApi from '@alicloud/openapi-client'
 import * as $Util from '@alicloud/tea-util'
-import { ensureFileSync, readFileSync } from 'fs-extra'
-import { logf } from '.'
-
-const configPath = join(homedir(), '.msgr', 'config')
-ensureFileSync(configPath)
-const AccessKeyConfig = JSON.parse(
-    readFileSync(configPath, 'utf-8')
-        ? readFileSync(configPath, 'utf-8')
-        : `{ "accessKeyId": "","accessKeySecret": "" }`,
-)
+import { configIsEmpty, getConfig, logf } from '.'
 
 export class Client {
     /**
@@ -26,11 +15,8 @@ export class Client {
     static createClient(endpoint: string): ECS {
         // 工程代码泄露可能会导致 AccessKey 泄露，并威胁账号下所有资源的安全性。以下代码示例仅供参考。
         // 建议使用更安全的 STS 方式，更多鉴权访问方式请参见：https://help.aliyun.com/document_detail/378664.html。
-
-        if (!AccessKeyConfig.accessKeyId || !AccessKeyConfig.accessKeySecret) {
-            logf('The accessKey is not configured', 'error')
-            process.exit(0)
-        }
+        const AccessKeyConfig = getConfig('default') as ConfigurationType
+        configIsEmpty(AccessKeyConfig)
 
         const config = new $OpenApi.Config({
             // 必填，请确保代码运行环境设置了环境变量 ALIBABA_CLOUD_ACCESS_KEY_ID。
