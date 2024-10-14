@@ -4,16 +4,26 @@ import process from 'node:process'
 import { ensureFileSync, readFileSync } from 'fs-extra'
 import { logf } from '.'
 
-export const getConfig = () => {
-    const configPath = join(homedir(), '.msgr', 'config')
+export const configPath = join(homedir(), '.msgr', 'config')
+
+export const getConfig = (mode: 'default' | 'all') => {
     ensureFileSync(configPath)
     const configContent = readFileSync(configPath, 'utf-8')
+    // 当configContent为空时，直接返回一个空对象
+    if (!configContent)
+        return {}
 
-    const config: ConfigurationType = !configContent ? {} : Object.values<{ accessKeyId: string, accessKeySecret: string, default: boolean }>(JSON.parse(configContent)).filter(item => item.default)[0]
-    return config
+    if (mode === 'default') {
+        // 当configContent为空对象时，返回一个空对象，否则返回一个default为true的对象
+        return Object.values<ConfigurationType>(JSON.parse(configContent)).filter(item => item.default)[0] ?? {}
+    }
+
+    if (mode === 'all') {
+        return JSON.parse(configContent)
+    }
 }
 
-export const configIsEmpty = (config: ConfigurationType) => {
+export const configIsEmpty = (config: ConfigurationType | object) => {
     if (Object.keys(config).length === 0) {
         logf(`The accessKey is not configured\n\r`, 'warning')
         process.exit(0)
