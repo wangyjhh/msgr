@@ -53,3 +53,10 @@ type AddSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs
 type RemoveSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
     securityGroupRuleId: string[]
 }
+
+// eslint-disable-next-line unused-imports/no-unused-vars
+interface ConfigurationType {
+    accessKeyId?: string
+    accessKeySecret?: string
+    default?: boolean
+}
