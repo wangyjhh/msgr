@@ -15,7 +15,7 @@ export const getConfig = () => {
 
 export const configIsEmpty = (config: ConfigurationType) => {
     if (Object.keys(config).length === 0) {
-        logf(`The accessKey is not configured`, 'warning')
+        logf(`The accessKey is not configured\n\r`, 'warning')
         process.exit(0)
     }
 }

@@ -1,7 +1,7 @@
 import { homedir } from 'node:os'
 import columnify from 'columnify'
 import { v4 as publicIpv4 } from 'public-ip'
-import { Client, getEndpoint, logf, logv } from '../utils'
+import { Client, getEndpoint, logf, logv ,getConfig,configIsEmpty } from '../utils'
 
 logf('success', 'success', '提示信息')
 logf('success', 'success')
@@ -77,3 +77,7 @@ console.log(
         },
     ]).split('\n')[1],
 )
+
+console.log(getConfig());
+
+configIsEmpty({})
