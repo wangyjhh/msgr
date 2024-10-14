@@ -20,7 +20,7 @@ console.log(getEndpoint('cn-beijing'))
 
 Client.getSecurityGroup(getEndpoint('cn-beijing'), {
     regionId: 'cn-beijing',
-    securityGroupId: 'sg-2ze7c4gtry9mfi2uwpab',
+    securityGroupId: '',
 }).then((res) => {
     console.log(
         res.map((item) => {
@@ -40,7 +40,7 @@ Client.getSecurityGroupId(getEndpoint('cn-shanghai'), {
 
 Client.addSecurityGroupRule(getEndpoint('cn-beijing'), {
     regionId: 'cn-beijing',
-    securityGroupId: 'sg-2ze7c4gtry9mfi2uwpab',
+    securityGroupId: '',
     permissions: [
         {
             policy: 'accept',
@@ -57,8 +57,8 @@ Client.addSecurityGroupRule(getEndpoint('cn-beijing'), {
 
 Client.removeSecurityGroupRule(getEndpoint('cn-beijing'), {
     regionId: 'cn-beijing',
-    securityGroupId: 'sg-2ze7c4gtry9mfi2uwpab',
-    securityGroupRuleId: ['sgr-2ze9jfigaakhffiqpako'],
+    securityGroupId: '',
+    securityGroupRuleId: [''],
 }).then((res) => {
     console.log(res)
 })
