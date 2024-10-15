@@ -1,6 +1,5 @@
 import columnify from 'columnify'
-import { Client, getEndpoint, logf } from '../../../utils'
-import { getRegionIdAndGroupId } from '../hooks'
+import { Client, getEndpoint, getRegionIdAndGroupId, logf } from '../../../utils'
 
 export const msgr_query_rules_base = async () => {}
 

@@ -1,6 +1,5 @@
 import inquirer from 'inquirer'
-import { Client, getEndpoint } from '../../../utils'
-import { getRegionIdAndGroupIdAndGroupRuleId } from '../hooks'
+import { Client, getEndpoint, getRegionIdAndGroupIdAndGroupRuleId } from '../../../utils'
 
 export const msgr_remove_rules = async () => {
     const { regionId, securityGroupId, securityGroupRuleId } = await getRegionIdAndGroupIdAndGroupRuleId()

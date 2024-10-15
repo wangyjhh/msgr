@@ -1,7 +1,7 @@
 import process from 'node:process'
 import columnify from 'columnify'
 import inquirer from 'inquirer'
-import { Client, getEndpoint, logf, regionIdMap } from '../../../utils'
+import { Client, getEndpoint, logf, regionIdMap } from '.'
 
 export const getRegionIdAndGroupId = async () => {
     const { regionId } = await inquirer.prompt([
