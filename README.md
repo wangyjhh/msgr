@@ -22,7 +22,7 @@ Options:
   -h, --help                         display help for command
 
 Commands:
-  config <tpye> <accesskey> [value]  Configuration
+  config <tpye>                      Configuration
   list|ls                            Review the security group rules.
   add|ad                             Add the security group rules.
   remove|rm                          Remove the security group rules.
@@ -35,13 +35,23 @@ Enter the command and fill in the necessary information according to the command
 
 #### Get config
 ```bash
-msgr config get accessKeyId
-msgr config get accessKeySecret
+msgr config get
 ```
 #### Set config
 ```bash
-msgr config set accessKeyId [accessKeyId]
-msgr config set accessKeySecret [accessKeySecret]
+msgr config set
+```
+#### Default config
+```bash
+msgr config default
+```
+#### Remove config
+```bash
+msgr config remove
+```
+#### Clear config
+```bash
+msgr config clear
 ```
 #### Get Security group rules list
 ```bash
