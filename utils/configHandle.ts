@@ -15,15 +15,15 @@ export const getConfig = (mode: 'default' | 'all') => {
 
     if (mode === 'default') {
         // 当configContent为空对象时，返回一个空对象，否则返回一个default为true的对象
-        return Object.values<ConfigurationType>(JSON.parse(configContent)).filter(item => item.default)[0] ?? {}
+        return Object.values<ConfigurationItem>(JSON.parse(configContent)).filter(item => item.default)[0] ?? {}
     }
 
     if (mode === 'all') {
-        return JSON.parse(configContent)
+        return JSON.parse(configContent) as ConfigurationType
     }
 }
 
-export const configIsEmpty = (config: ConfigurationType | object) => {
+export const configIsEmpty = (config: ConfigurationType) => {
     if (Object.keys(config).length === 0) {
         logf(`The accessKey is not configured\n`, 'warning')
         process.exit(0)
