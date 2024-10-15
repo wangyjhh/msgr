@@ -1,6 +1,6 @@
 {
     "name": "@wangyjhh/msgr",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
     "author": "wangyjhh",
     "license": "MIT",
