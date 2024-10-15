@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
-import { Client, getEndpoint } from '../../../utils'
-import { getPublicIP, getRegionIdAndGroupIdAndGroupRuleId } from '../hooks'
+import { Client, getEndpoint, getPublicIP } from '../../../utils'
+import { getRegionIdAndGroupIdAndGroupRuleId } from '../hooks'
 
 const attributeMap = ['policy', 'priority', 'ipProtocol', 'portRange', 'sourceCidrIp', 'description']
 

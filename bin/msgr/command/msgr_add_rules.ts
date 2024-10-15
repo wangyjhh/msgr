@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
-import { Client, getEndpoint } from '../../../utils'
-import { getPublicIP, getRegionIdAndGroupId } from '../hooks'
+import { Client, getEndpoint, getPublicIP } from '../../../utils'
+import { getRegionIdAndGroupId } from '../hooks'
 
 export const msgr_add_rules = async () => {
     const { regionId, securityGroupId } = await getRegionIdAndGroupId()
