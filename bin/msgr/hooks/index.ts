@@ -46,7 +46,7 @@ export const getRegionIdAndGroupId = async () => {
     })
 
     if (groupIds.length === 0) {
-        logf('There is no security group in this area.', 'warning', 'WARNING')
+        logf('There is no security group in this area.\n', 'warning', 'WARNING')
         process.exit(0)
     }
 

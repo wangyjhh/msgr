@@ -46,7 +46,7 @@ export class Client {
         catch (error: any) {
             // 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
             // 错误 message
-            logf(`${error.data.Message}`, 'error', 'ERROR')
+            logf(`${error.data.Message}\n`, 'error', 'ERROR')
             process.exit(1)
             // 诊断地址
             // console.log(error.data["Recommend"])
@@ -113,7 +113,7 @@ export class Client {
         try {
             // 复制代码运行请自行打印 API 的返回值
             const response = await client.authorizeSecurityGroupWithOptions(request, runtime)
-            logf('The security group rule was added successfully', 'success')
+            logf('The security group rule was added successfully.\n', 'success')
             return response
         }
         catch (error: any) {
@@ -138,7 +138,7 @@ export class Client {
         try {
             // 复制代码运行请自行打印 API 的返回值
             const response = await client.revokeSecurityGroupWithOptions(request, runtime)
-            logf('The security group rule was removed successfully', 'success')
+            logf('The security group rule was removed successfully.\n', 'success')
             return response
         }
         catch (error: any) {
@@ -164,7 +164,7 @@ export class Client {
         const runtime = new $Util.RuntimeOptions({})
         try {
             const response = await client.modifySecurityGroupRuleWithOptions(request, runtime)
-            logf('The security group rule was modified successfully', 'success')
+            logf('The security group rule was modified successfully.\n', 'success')
             return response
         }
         catch (error: any) {

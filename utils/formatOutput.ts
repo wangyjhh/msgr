@@ -10,7 +10,7 @@ const colorMap = {
 export const logf = (out: string, type: 'success' | 'error' | 'warning', title?: string) => {
     title !== undefined
         // eslint-disable-next-line no-console
-        ? console.log(`\n\r${colorMap[type].bgcolor(` ${title} `)}`, colorMap[type].color(` ${out} `))
+        ? console.log(`\n${colorMap[type].bgcolor(` ${title} `)}`, colorMap[type].color(` ${out} `))
         // eslint-disable-next-line no-console
-        : console.log(`\n\r${colorMap[type].color(`${out}`)}`)
+        : console.log(`\n${colorMap[type].color(`${out}`)}`)
 }

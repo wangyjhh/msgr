@@ -24,7 +24,7 @@ export const msgr_config = async (type: string) => {
         ])
 
         if (accessKeyId === '') {
-            logf('AccessKeyId is empty.', 'error', 'ERROR')
+            logf('AccessKeyId is empty.\n', 'error', 'ERROR')
             return
         }
 
@@ -37,7 +37,7 @@ export const msgr_config = async (type: string) => {
         ])
 
         if (accessKeySecret === '') {
-            logf('AccessKeySecret is empty.', 'error', 'ERROR')
+            logf('AccessKeySecret is empty.\n', 'error', 'ERROR')
             return
         }
 
@@ -48,12 +48,12 @@ export const msgr_config = async (type: string) => {
         }
 
         writeFileSync(configPath, JSON.stringify(AccessKeyConfig))
-        logf(`AThe AccessKey is successfully inserted.`, 'success')
+        logf(`AThe AccessKey is successfully inserted.\n`, 'success')
     }
 
     if (type === 'default') {
         if (Object.keys(AccessKeyConfig).length === 0) {
-            logf(`The AccessKey is not set`, 'warning')
+            logf(`The AccessKey is not set\n`, 'warning')
             return
         }
 
@@ -74,12 +74,12 @@ export const msgr_config = async (type: string) => {
         AccessKeyConfig[accessKey].default = true
 
         writeFileSync(configPath, JSON.stringify(AccessKeyConfig))
-        logf(`The AccessKey "${accessKey}" set default is successfully.`, 'success')
+        logf(`The AccessKey "${accessKey}" set default is successfully.\n`, 'success')
     }
 
     if (type === 'get') {
         if (Object.keys(AccessKeyConfig).length === 0) {
-            logf(`The AccessKey is not set`, 'warning')
+            logf(`The AccessKey is not set.\n`, 'warning')
             return
         }
 
@@ -98,12 +98,12 @@ export const msgr_config = async (type: string) => {
             },
         ])
 
-        logf(`accessKeyId: ${AccessKeyConfig[accessKey].accessKeyId}\n\raccessKeySecret: ${AccessKeyConfig[accessKey].accessKeySecret}\n\r`, 'success')
+        logf(`accessKeyId: ${AccessKeyConfig[accessKey].accessKeyId}\naccessKeySecret: ${AccessKeyConfig[accessKey].accessKeySecret}\n`, 'success')
     }
 
     if (type === 'remove') {
         if (Object.keys(AccessKeyConfig).length === 0) {
-            logf(`The AccessKey is not set`, 'warning')
+            logf(`The AccessKey is not set.\n`, 'warning')
             return
         }
 
@@ -123,12 +123,12 @@ export const msgr_config = async (type: string) => {
         }
 
         writeFileSync(configPath, JSON.stringify(AccessKeyConfig))
-        logf(`The AccessKey "${accessKey}" is successfully removed.`, 'success')
+        logf(`The AccessKey "${accessKey}" is successfully removed.\n`, 'success')
     }
 
     if (type === 'clear') {
         AccessKeyConfig = {}
         writeFileSync(configPath, JSON.stringify(AccessKeyConfig))
-        logf(`The AccessKey is successfully cleared.`, 'success')
+        logf(`The AccessKey is successfully cleared.\n`, 'success')
     }
 }
