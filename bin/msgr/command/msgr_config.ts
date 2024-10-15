@@ -3,7 +3,7 @@ import inquirer from 'inquirer'
 import { configPath, getConfig, logf } from '../../../utils'
 
 export const msgr_config = async (type: string) => {
-    let AccessKeyConfig = getConfig('all')
+    let AccessKeyConfig = getConfig('all') as ConfigurationType
 
     if (type === 'set') {
         const { accessKeyName } = await inquirer.prompt([

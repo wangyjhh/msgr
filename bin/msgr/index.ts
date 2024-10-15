@@ -21,10 +21,11 @@ program
         'after',
         `
 Example:
-  $ msgr config get accessKeyId 
-  $ msgr config get accessKeySecret
-  $ msgr config set accessKeyId xxx
-  $ msgr config set accessKeySecret xxx
+  $ msgr config set
+  $ msgr config get
+  $ msgr config remove
+  $ msgr config clear
+  $ msgr config default
   $ msgr list or msgr ls
   $ msgr add or msgr ad or msgr insert
   $ msgr remove or msgr rm or msgr delete
@@ -42,9 +43,9 @@ program
     .command('config')
     .addHelpText(
         'after',
-        '\nExample:\n    $ msgr config get accessKeyId\n  $ msgr config get accessKeySecret\n  $ msgr config set accessKeyId <accessKeyId>\n  $ msgr config set accessKeySecret <accessKeySecret>\n',
+        '\nExample:\n  $ msgr config set\n  $ msgr config get\n  $ msgr config remove\n  $ msgr config clear\n  $ msgr config default\n',
     )
-    .addArgument(new commander.Argument('<tpye>', 'Config type. (set/get/default/remove/clear)').choices(['set', 'get', 'remove', 'clear', 'default']))
+    .addArgument(new commander.Argument('<tpye>', 'Config type. [set][get][default][remove][clear]'))
     .description('Configuration')
     .action(msgr_config)
 
