@@ -4,9 +4,7 @@
     "description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
     "author": "wangyjhh",
     "license": "MIT",
-    "repository": {
-        "url": "git+https://github.com/wangyjhh/msgr.git"
-    },
+    "repository": { "url": "git+https://github.com/wangyjhh/msgr.git" },
     "keywords": [],
     "main": "dist/bin/msgr/index.cjs",
     "bin": {
@@ -39,10 +37,10 @@
         "public-ip": "^4.0.4"
     },
     "devDependencies": {
-        "@antfu/eslint-config": "^3.7.3",
         "@types/columnify": "^1.5.4",
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^20.12.7",
+        "@wangyjhh/eslint-config": "^1.0.1",
         "eslint": "^9.12.0",
         "tsx": "^3.14.0",
         "typescript": "^5.4.5",
