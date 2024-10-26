@@ -48,7 +48,7 @@ export const msgr_config = async (type: string) => {
         }
 
         writeFileSync(configPath, JSON.stringify(AccessKeyConfig))
-        logf(`AThe AccessKey is successfully inserted.\n`, 'success')
+        logf(`The AccessKey is successfully inserted.\n`, 'success')
     }
 
     if (type === 'default') {
