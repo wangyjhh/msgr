@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process'
 import commander, { Command } from 'commander'
-import pkg from '../../package.json'
-import { logv } from '../../utils/index'
+import pkg from '../package.json'
 import {
     msgr_add_rules,
     msgr_config,
@@ -11,7 +10,8 @@ import {
     msgr_modify_rules,
     msgr_query_rules,
     msgr_remove_rules,
-} from './command'
+} from '../src/msgr/command'
+import { logv } from '../utils/index'
 
 const program = new Command()
 

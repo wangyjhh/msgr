@@ -135,4 +135,4 @@ export const regionIdMap = [
         name: '华南1 金融云',
         value: 'cn-shenzhen-finance-1',
     },
-]
+] as const

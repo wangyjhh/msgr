@@ -14,12 +14,9 @@
         "dist"
     ],
     "scripts": {
-        "dev": "pnpm build && pnpm unl && pnpm l",
-        "l": "npm link",
-        "unl": "npm unlink @wangyjhh/msgr -g",
         "test": "tsx test/index.test.ts",
         "lint": "eslint .",
-        "fix": "eslint . --fix",
+        "lint:fix": "eslint . --fix",
         "build": "unbuild && tsx script/copy-files.ts",
         "prepublish": "pnpm unl && pnpm build",
         "publish": "npm publish"

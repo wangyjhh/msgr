@@ -1,3 +1,4 @@
+import type { SecurityGroupAttributesType } from '../types'
 import process from 'node:process'
 import columnify from 'columnify'
 import inquirer from 'inquirer'

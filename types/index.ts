@@ -1,4 +1,6 @@
-interface SecurityGroupAttributesType {
+import type { regionIdMap } from '../utils'
+
+export interface SecurityGroupAttributesType {
     createTime: string
     description: string
     destCidrIp: string
@@ -8,11 +10,11 @@ interface SecurityGroupAttributesType {
     destPrefixListId: string
     destPrefixListName: string
     direction: string
-    ipProtocol: string
+    ipProtocol: 'TCP' | 'UDP'
     ipv6DestCidrIp: string
     ipv6SourceCidrIp: string
     nicType: string
-    policy: string
+    policy: 'accept' | 'drop'
     portRange: string
     priority: string
     securityGroupRuleId: string
@@ -25,42 +27,44 @@ interface SecurityGroupAttributesType {
     sourcePrefixListName: string
 }
 
-interface BaseRequestArgs {
+export interface BaseRequestArgs {
     regionId: string
 }
 
-type DescribeSecurityGroupAttributeRequestArgs = BaseRequestArgs & {
+export type DescribeSecurityGroupAttributeRequestArgs = BaseRequestArgs & {
     securityGroupId: string
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
+export type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
     securityGroupRuleId: string
     sourceCidrIp?: string
     description?: string
 }
 
-type PermissionsType = Required<
+export type PermissionsType = Required<
     Pick<SecurityGroupAttributesType, 'policy' | 'priority' | 'sourceCidrIp' | 'ipProtocol' | 'portRange' | 'description'>
 >
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-type AddSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
+export type AddSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
     permissions: PermissionsType[]
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-type RemoveSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
+export type RemoveSecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeRequestArgs & {
     securityGroupRuleId: string[]
 }
 
-interface ConfigurationItem {
+export interface ConfigurationItem {
     accessKeyId?: string
     accessKeySecret?: string
     default?: boolean
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-interface ConfigurationType {
+export interface ConfigurationType {
     [key: string]: ConfigurationItem
 }
+
+export type RegionID = typeof regionIdMap[number]['value']
+
+export type SecurityGroupItem = Partial<Pick<SecurityGroupAttributesType, 'description' | 'securityGroupRuleId'>>
+
+export type SecurityGroupFilter = (item: SecurityGroupItem) => boolean
