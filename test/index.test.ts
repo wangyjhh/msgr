@@ -1,7 +1,8 @@
+import { log } from 'node:console'
 import { homedir } from 'node:os'
 import columnify from 'columnify'
 import { v4 as publicIpv4 } from 'public-ip'
-import { Client, getEndpoint, logf, logv ,getConfig,configIsEmpty } from '../utils'
+import { Client, configIsEmpty, getConfig, getEndpoint, logf, logv } from '../utils'
 
 logf('success', 'success', '提示信息')
 logf('success', 'success')
@@ -11,18 +12,18 @@ logf('error', 'error', '提示信息')
 logf('error', 'error')
 
 publicIpv4().then((ip) => {
-    console.log(ip)
+    log(ip)
 })
 
-console.log(logv('1.0.1'))
+log(logv('1.0.1'))
 
-console.log(getEndpoint('cn-beijing'))
+log(getEndpoint('cn-beijing'))
 
 Client.getSecurityGroup(getEndpoint('cn-beijing'), {
     regionId: 'cn-beijing',
     securityGroupId: '',
 }).then((res) => {
-    console.log(
+    log(
         res.map((item) => {
             return {
                 description: item.description,
@@ -35,7 +36,7 @@ Client.getSecurityGroup(getEndpoint('cn-beijing'), {
 Client.getSecurityGroupId(getEndpoint('cn-shanghai'), {
     regionId: 'cn-shanghai',
 }).then((res) => {
-    console.log(res)
+    log(res)
 })
 
 Client.addSecurityGroupRule(getEndpoint('cn-beijing'), {
@@ -52,7 +53,7 @@ Client.addSecurityGroupRule(getEndpoint('cn-beijing'), {
         },
     ],
 }).then((res) => {
-    console.log(res)
+    log(res)
 })
 
 Client.removeSecurityGroupRule(getEndpoint('cn-beijing'), {
@@ -60,12 +61,12 @@ Client.removeSecurityGroupRule(getEndpoint('cn-beijing'), {
     securityGroupId: '',
     securityGroupRuleId: [''],
 }).then((res) => {
-    console.log(res)
+    log(res)
 })
 
-console.log(homedir())
+log(homedir())
 
-console.log(
+log(
     columnify([
         {
             policy: 'policy',
@@ -78,7 +79,7 @@ console.log(
     ]).split('\n')[1],
 )
 
-console.log(getConfig('all'));
-console.log(getConfig('default'));
+log(getConfig('all'))
+log(getConfig('default'))
 
 configIsEmpty({})
