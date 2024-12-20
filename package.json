@@ -1,6 +1,6 @@
 {
     "name": "@wangyjhh/msgr",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "This is A security group rule management tool for Alibaba Cloud ESC implemented based on the official SDK.",
     "author": "wangyjhh",
     "license": "MIT",
@@ -19,7 +19,7 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "build": "unbuild && tsx script/copy-files.ts",
-        "prepublish": "pnpm build",
+        "prepub": "pnpm build",
         "pub": "npm publish"
     },
     "dependencies": {
