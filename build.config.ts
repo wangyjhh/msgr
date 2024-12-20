@@ -1,8 +1,9 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-    entries: ['bin/msgr/index'],
+    entries: ['bin/index', 'lib/index'],
     clean: true,
+    declaration: true,
     rollup: {
         emitCJS: true,
         esbuild: {

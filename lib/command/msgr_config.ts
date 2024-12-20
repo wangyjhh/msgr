@@ -1,3 +1,4 @@
+import type { ConfigurationType } from '../../types'
 import { writeFileSync } from 'fs-extra'
 import inquirer from 'inquirer'
 import { configPath, getConfig, logf } from '../../utils'

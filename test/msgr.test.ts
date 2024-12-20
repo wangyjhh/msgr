@@ -1,6 +1,6 @@
 import type { ConfigurationType } from '../types'
 import { log } from 'node:console'
-import { MSGR } from '../src'
+import { MSGR } from '../lib'
 import { getConfig } from '../utils'
 
 const AccessKeyConfig = getConfig('default')

@@ -6,9 +6,10 @@
     "license": "MIT",
     "repository": { "url": "git+https://github.com/wangyjhh/msgr.git" },
     "keywords": [],
-    "main": "dist/bin/msgr/index.cjs",
+    "main": "dist/lib/index.cjs",
+    "types": "dist/lib/index.d.ts",
     "bin": {
-        "msgr": "dist/bin/msgr/index.cjs"
+        "msgr": "dist/bin/index.cjs"
     },
     "files": [
         "dist"

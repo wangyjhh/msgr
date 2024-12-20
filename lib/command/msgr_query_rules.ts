@@ -1,5 +1,6 @@
+import type { SecurityGroupAttributesType } from '../../types'
 import columnify from 'columnify'
-import { Client, getEndpoint, getRegionIdAndGroupId, logf } from '../../../utils'
+import { Client, getEndpoint, getRegionIdAndGroupId, logf } from '../../utils'
 
 export const msgr_query_rules_base = async () => {}
 

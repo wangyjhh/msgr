@@ -1,3 +1,4 @@
+import type { ConfigurationItem, ConfigurationType } from '../types'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 import process from 'node:process'
