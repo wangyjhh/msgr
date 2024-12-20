@@ -1,14 +1,14 @@
-import type { ConfigurationType } from '../types'
+import type { ConfigurationItem } from '../types'
 import { log } from 'node:console'
 import { MSGR } from '../lib'
 import { getConfig } from '../utils'
 
-const AccessKeyConfig = getConfig('default')
+const AccessKeyConfig = getConfig('default') as ConfigurationItem
 
 const shanghai = new MSGR({
     regionId: 'cn-shanghai',
-    accessKeyId: AccessKeyConfig.accessKeyId,
-    accessKeySecret: AccessKeyConfig.accessKeySecret,
+    accessKeyId: AccessKeyConfig.accessKeyId!,
+    accessKeySecret: AccessKeyConfig.accessKeySecret!,
 })
 
 const main = async () => {

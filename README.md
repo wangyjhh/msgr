@@ -12,6 +12,8 @@ pnpm add @wangyjhh/msgr -g
 ```
 ## Usage
 
+### CLI
+
 ```html
 Usage: msgr [options] [command]
 
@@ -29,8 +31,21 @@ Commands:
   modify|mo                          Modify the security group rules.
   help [command]                     display help for command
 ```
+### API
+```typescript
+import MSGR from '@wangyjhh/msgr'
+
+const region_msgr = new MSGR({
+    regionId: 'your regionId',
+    accessKeyId: 'your accessKeyId',
+    accessKeySecret: 'your accessKeySecret',
+})
+```
+> regionId Supports values. For details, see [regionIdMap](https://github.com/wangyjhh/msgr/blob/main/utils/regionIdMap.ts)
+
 ## Example
 
+### Cli
 Enter the command and fill in the necessary information according to the command line instructions
 
 #### Get config
@@ -87,4 +102,52 @@ msgr modify
 # The following commands will also work
 msgr mo
 msgr edit
+```
+### API
+```typescript
+import MSGR from '@wangyjhh/msgr'
+
+const region_msgr = new MSGR({
+    regionId: 'your regionId',
+    accessKeyId: 'your accessKeyId',
+    accessKeySecret: 'your accessKeySecret',
+})
+
+const main = async () => {
+    // get security group id
+    const security_group_id = (await region_msgr.getSecurityGroupId())[0]
+
+    // get security group rules
+    const security_group_test_rule_ifno = await region_msgr.getSecurityGroup(security_group_id, (item) => {
+        return item.portRange === '80/80'
+    })
+
+    // get security group rule id
+    const security_group_test_rule_id = security_group_test_rule_ifno[0].securityGroupRuleId
+
+    // add security group rules
+    await region_msgr.addSecurityGroup(security_group_id, {
+        policy: 'accept',
+        priority: '2',
+        ipProtocol: 'TCP',
+        portRange: '80/89',
+        sourceCidrIp: '0.0.0.0/0',
+        description: 'test',
+    })
+
+    // modify security group rules
+    await region_msgr.modifySecurityGroup(security_group_id, security_group_test_rule_id, {
+        policy: 'drop',
+        priority: '2',
+        ipProtocol: 'TCP',
+        portRange: '5556/5556',
+        sourceCidrIp: '0.0.0.0/0',
+        description: 'test',
+    })
+
+    // delete security group rules
+    await msgr.deleteSecurityGroup(security_group_id, security_group_test_rule_id)
+}
+
+main()
 ```

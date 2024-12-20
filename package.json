@@ -1,7 +1,7 @@
 {
     "name": "@wangyjhh/msgr",
     "version": "0.3.2",
-    "description": "This is a command line tool for quick operation of Alibaba Cloud Security group rules.",
+    "description": "This is A security group rule management tool for Alibaba Cloud ESC implemented based on the official SDK.",
     "author": "wangyjhh",
     "license": "MIT",
     "repository": { "url": "git+https://github.com/wangyjhh/msgr.git" },
