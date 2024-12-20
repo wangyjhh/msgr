@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs-extra'
 import inquirer from 'inquirer'
-import { configPath, getConfig, logf } from '../../../utils'
+import { configPath, getConfig, logf } from '../../utils'
 
 export const msgr_config = async (type: string) => {
     let AccessKeyConfig = getConfig('all') as ConfigurationType

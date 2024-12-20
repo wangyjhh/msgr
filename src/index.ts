@@ -1,8 +1,8 @@
-import type { ApiModifyArgs, ApiRegionID, ApiSecurityGroupFilter, ApiSecurityGroupItem, PermissionsType } from '../../types'
+import type { ApiModifyArgs, ApiRegionID, ApiSecurityGroupFilter, ApiSecurityGroupItem, PermissionsType } from '../types'
 import ECS, * as $ECS from '@alicloud/ecs20140526'
 import * as $OpenApi from '@alicloud/openapi-client'
 import * as $Util from '@alicloud/tea-util'
-import { getEndpoint } from '../../utils'
+import { getEndpoint } from '../utils'
 
 export class MSGR {
     private regionId: string

@@ -10,7 +10,7 @@ import {
     msgr_modify_rules,
     msgr_query_rules,
     msgr_remove_rules,
-} from '../src/msgr/command'
+} from '../src/command'
 import { logv } from '../utils/index'
 
 const program = new Command()

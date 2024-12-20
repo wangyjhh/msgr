@@ -12,5 +12,5 @@
         "skipDefaultLibCheck": true,
         "skipLibCheck": true
     },
-    "include": ["bin/**/*", "types/**/*", "utils/**/*", "src/msgr/command", "bin/index.ts"]
+    "include": ["bin/**/*", "types/**/*", "utils/**/*", "src/command", "bin/index.ts"]
 }
