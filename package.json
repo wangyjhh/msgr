@@ -1,6 +1,6 @@
 {
     "name": "@wangyjhh/msgr",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "description": "This is A security group rule management tool for Alibaba Cloud ESC implemented based on the official SDK.",
     "author": "wangyjhh",
     "license": "MIT",
