@@ -19,7 +19,7 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "build": "unbuild && tsx script/copy-files.ts",
-        "prepublish": "pnpm unl && pnpm build",
+        "prepublish": "pnpm build",
         "publish": "npm publish"
     },
     "dependencies": {
