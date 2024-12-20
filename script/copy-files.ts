@@ -15,4 +15,5 @@ const pkg = JSON.parse(readFileSync(path.resolve(__dirname, '../', 'dist', 'pack
 pkg.main = './lib/index.cjs'
 pkg.types = './lib/index.d.ts'
 pkg.bin = './bin/index.cjs'
+pkg.files = []
 writeJSONSync(path.resolve(__dirname, '../', 'dist', 'package.json'), pkg, { spaces: 4 })
