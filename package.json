@@ -11,16 +11,14 @@
     "bin": {
         "msgr": "dist/bin/index.cjs"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["LICENSE", "README.md", "dist", "package.json"],
     "scripts": {
         "test": "tsx test/index.test.ts",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "build": "unbuild && tsx script/copy-files.ts",
-        "prepub": "pnpm build",
-        "pub": "npm publish"
+        "build": "unbuild",
+        "prepublish": "pnpm build",
+        "publish": "npm publish"
     },
     "dependencies": {
         "@alicloud/ecs20140526": "^4.3.0",
