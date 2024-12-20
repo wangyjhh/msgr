@@ -131,12 +131,12 @@ export class Client {
 
     /**
      * @remarks
-     * 修改安全组规则
+     * 修改入方向安全组规则
      * @param endpoint 参数
      * @param args 参数
      * @returns any
      */
-    static async modifySecurityGroup(endpoint: string, args: ModifySecurityGroupRuleRequestArgs): Promise<any> {
+    static async modifySecurityGroupRule(endpoint: string, args: ModifySecurityGroupRuleRequestArgs): Promise<any> {
         const client = Client.createClient(endpoint)
         const request = new $ECS.ModifySecurityGroupRuleRequest(args)
         const runtime = new $Util.RuntimeOptions({})

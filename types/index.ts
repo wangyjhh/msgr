@@ -63,8 +63,10 @@ export interface ConfigurationType {
     [key: string]: ConfigurationItem
 }
 
-export type RegionID = typeof regionIdMap[number]['value']
+export type ApiRegionID = typeof regionIdMap[number]['value']
 
-export type SecurityGroupItem = Partial<Pick<SecurityGroupAttributesType, 'description' | 'securityGroupRuleId'>>
+export type ApiSecurityGroupItem = Partial<Pick<SecurityGroupAttributesType, 'description' | 'securityGroupRuleId' | 'portRange'>>
 
-export type SecurityGroupFilter = (item: SecurityGroupItem) => boolean
+export type ApiSecurityGroupFilter = (item: ApiSecurityGroupItem) => boolean
+
+export type ApiModifyArgs = Partial<Pick<SecurityGroupAttributesType, 'policy' | 'priority' | 'ipProtocol' | 'portRange' | 'sourceCidrIp' | 'description'>>

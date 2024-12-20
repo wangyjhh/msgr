@@ -1,4 +1,4 @@
-import type { PermissionsType, RegionID, SecurityGroupFilter, SecurityGroupItem } from '../../types'
+import type { ApiModifyArgs, ApiRegionID, ApiSecurityGroupFilter, ApiSecurityGroupItem, PermissionsType } from '../../types'
 import ECS, * as $ECS from '@alicloud/ecs20140526'
 import * as $OpenApi from '@alicloud/openapi-client'
 import * as $Util from '@alicloud/tea-util'
@@ -7,7 +7,7 @@ import { getEndpoint } from '../../utils'
 export class MSGR {
     private regionId: string
     private client: ECS
-    constructor({ accessKeyId, accessKeySecret, regionId }: { accessKeyId: string, accessKeySecret: string, regionId: RegionID }) {
+    constructor({ accessKeyId, accessKeySecret, regionId }: { accessKeyId: string, accessKeySecret: string, regionId: ApiRegionID }) {
         this.regionId = regionId
         this.client = this.createClient(getEndpoint(regionId), accessKeyId, accessKeySecret)
     }
@@ -33,7 +33,7 @@ export class MSGR {
     }
 
     // 获取安全组规则信息
-    async getSecurityGroup(securityGroupId: string, filter?: SecurityGroupFilter): Promise<SecurityGroupItem[] | []> {
+    async getSecurityGroup(securityGroupId: string, filter?: ApiSecurityGroupFilter): Promise<ApiSecurityGroupItem[] | []> {
         const request = new $ECS.DescribeSecurityGroupAttributeRequest({
             regionId: this.regionId,
             securityGroupId,
@@ -47,6 +47,7 @@ export class MSGR {
             return result.map((item) => {
                 return {
                     description: item.description,
+                    portRange: item.portRange,
                     securityGroupRuleId: item.securityGroupRuleId,
                 }
             }).filter((item) => {
@@ -66,6 +67,32 @@ export class MSGR {
         })
         const runtime = new $Util.RuntimeOptions({})
         const response = await this.client.authorizeSecurityGroupWithOptions(request, runtime)
+        return response
+    }
+
+    // 删除入方向安全组规则
+    async removeSecurityGroupRule(securityGroupId: string, securityGroupRuleId: string): Promise<any> {
+        const request = new $ECS.RevokeSecurityGroupRequest({
+            regionId: this.regionId,
+            securityGroupId,
+            securityGroupRuleId: [securityGroupRuleId],
+        })
+        const runtime = new $Util.RuntimeOptions({})
+        const response = await this.client.revokeSecurityGroupWithOptions(request, runtime)
+        return response
+    }
+
+    // 修改入方向安全组规则
+    async modifySecurityGroupRule(securityGroupId: string, securityGroupRuleId: string, args: ApiModifyArgs): Promise<any> {
+        const request = new $ECS.ModifySecurityGroupRuleRequest({
+            regionId: this.regionId,
+            securityGroupId,
+            securityGroupRuleId,
+            ...args,
+        })
+
+        const runtime = new $Util.RuntimeOptions({})
+        const response = await this.client.modifySecurityGroupRuleWithOptions(request, runtime)
         return response
     }
 }

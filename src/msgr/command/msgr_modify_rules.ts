@@ -61,7 +61,7 @@ export const msgr_modify_rules = async () => {
     // @ts-ignore
     const { value } = await inquirer.prompt([input_prompt_map[attribute]])
 
-    await Client.modifySecurityGroup(getEndpoint(regionId), {
+    await Client.modifySecurityGroupRule(getEndpoint(regionId), {
         regionId,
         securityGroupId,
         securityGroupRuleId,
