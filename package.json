@@ -20,7 +20,7 @@
         "lint:fix": "eslint . --fix",
         "build": "unbuild && tsx script/copy-files.ts",
         "prepublish": "pnpm build",
-        "publish": "npm publish"
+        "pub": "npm publish"
     },
     "dependencies": {
         "@alicloud/ecs20140526": "^4.3.0",

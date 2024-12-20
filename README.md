@@ -130,7 +130,7 @@ const main = async () => {
         policy: 'accept',
         priority: '2',
         ipProtocol: 'TCP',
-        portRange: '80/89',
+        portRange: '80/80',
         sourceCidrIp: '0.0.0.0/0',
         description: 'test',
     })
@@ -140,7 +140,7 @@ const main = async () => {
         policy: 'drop',
         priority: '2',
         ipProtocol: 'TCP',
-        portRange: '5556/5556',
+        portRange: '80/80',
         sourceCidrIp: '0.0.0.0/0',
         description: 'test',
     })
