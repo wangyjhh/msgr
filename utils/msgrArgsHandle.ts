@@ -81,5 +81,8 @@ export const getRegionIdAndGroupIdAndGroupRuleId = async () => {
             choices: securityGroups,
         },
     ])
-    return { securityGroupId, regionId, securityGroupRuleId }
+
+    const securityGroupRule = securityGroups.filter(item => item.value === securityGroupRuleId)[0].name.split(' ').filter(item => item !== '')
+
+    return { securityGroupId, regionId, securityGroupRuleId, securityGroupRule }
 }
