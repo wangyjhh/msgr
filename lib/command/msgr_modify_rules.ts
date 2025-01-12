@@ -24,7 +24,7 @@ const getAttributeChoicesList = () => {
 }
 
 export const msgr_modify_rules = async () => {
-    const { regionId, securityGroupId, securityGroupRuleId } = await getRegionIdAndGroupIdAndGroupRuleId()
+    const { regionId, securityGroupId, securityGroupRuleId, securityGroupRule } = await getRegionIdAndGroupIdAndGroupRuleId()
 
     const { attribute }: { attribute: string } = await inquirer.prompt([
         {
@@ -65,6 +65,12 @@ export const msgr_modify_rules = async () => {
         regionId,
         securityGroupId,
         securityGroupRuleId,
+        policy: securityGroupRule[0].toLowerCase() as 'accept' | 'drop',
+        priority: securityGroupRule[1],
+        ipProtocol: securityGroupRule[2] as 'TCP' | 'UDP',
+        portRange: securityGroupRule[3],
+        sourceCidrIp: securityGroupRule[4],
+        description: securityGroupRule[5],
         [attribute]: value,
     })
 }

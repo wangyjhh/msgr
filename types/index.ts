@@ -39,7 +39,7 @@ export type ModifySecurityGroupRuleRequestArgs = DescribeSecurityGroupAttributeR
     securityGroupRuleId: string
     sourceCidrIp?: string
     description?: string
-}
+} & Pick<SecurityGroupAttributesType, 'policy' | 'priority' | 'sourceCidrIp' | 'ipProtocol' | 'portRange' | 'description'>
 
 export type PermissionsType = Required<
     Pick<SecurityGroupAttributesType, 'policy' | 'priority' | 'sourceCidrIp' | 'ipProtocol' | 'portRange' | 'description'>
